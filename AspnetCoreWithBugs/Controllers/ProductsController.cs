@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AspnetCoreWithBugs.Models;
+using AspnetCoreWithBugs.Data;
 
 namespace AspnetCoreWithBugs.Controllers
 {
@@ -33,7 +34,7 @@ namespace AspnetCoreWithBugs.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _context.AddAsync(product);
+                await ProductDb.Create(product, _context); //add to database
                 return RedirectToAction(nameof(Index));
             }
             return View(product);
