@@ -28,5 +28,12 @@ namespace AspnetCoreWithBugs.Data
             return p;
         }
 
+        public static async Task Delete(int id, ProductContext context) 
+        {
+            var product = await context.Product.FindAsync(id);
+            context.Product.Remove(product);
+            await context.SaveChangesAsync();
+        }
+
     }
 }

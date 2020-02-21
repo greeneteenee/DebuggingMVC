@@ -78,9 +78,7 @@ namespace AspnetCoreWithBugs.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _context.Product.FindAsync(id);
-            _context.Product.Remove(product);
-            await _context.SaveChangesAsync();
+            await ProductDb.Delete(id, _context);
             return RedirectToAction(nameof(Index));
         }
 
