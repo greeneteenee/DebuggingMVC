@@ -21,7 +21,7 @@ namespace AspnetCoreWithBugs.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Product.ToListAsync());
+            return View(await ProductDb.ShowAll(_context));
         }
 
         public IActionResult Create()
@@ -86,5 +86,8 @@ namespace AspnetCoreWithBugs.Controllers
         {
             return _context.Product.Any(e => e.ProductId == id);
         }
+
+     
+
     }
 }

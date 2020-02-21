@@ -35,5 +35,10 @@ namespace AspnetCoreWithBugs.Data
             await context.SaveChangesAsync();
         }
 
+        public static async Task<List<Product>> ShowAll(ProductContext context)
+        {
+            return await context.Product.ToListAsync();           
+        }
+
     }
 }
