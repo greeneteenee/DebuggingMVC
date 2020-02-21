@@ -1,4 +1,5 @@
 ﻿using AspnetCoreWithBugs.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,14 @@ namespace AspnetCoreWithBugs.Data
 
             return p;
         }
+
+        public static async Task<Product> Edit(Product p, ProductContext context)
+        {
+            await context.AddAsync(p);
+            context.Entry(p).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+            return p;
+        }
+
     }
 }
